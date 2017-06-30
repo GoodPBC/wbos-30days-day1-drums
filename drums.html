@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Display page in Edge mode-->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css"  media="screen,projection"/>
+  <!--Page Title-->
+  <title>Drum kit</title>
+
+</head>
+
+<body>
+  <div class="keys"> <!--Open Keys Div-->
+    <!--Open Key divs  -->
+    <div class="container key">
+      <div data-key="65" class="key"></div>
+      <kbd>A</kbd>
+      <span class="sound">CLAP</span>
+    </div>
+    <div class="container">
+      <div data-key="83" class="key"></div>
+      <kbd>S</kbd>
+      <span class="sound">HIHAT</span>
+    </div>
+    <div class="container">
+      <div data-key="68" class="key"></div>
+      <kbd>D</kbd>
+      <span class="sound">KICK</span>
+    </div>
+    <div class="container">
+      <div data-key="70" class="key"></div>
+      <kbd>F</kbd>
+      <span class="sound">OPENHAT</span>
+    </div>
+    <div class="container">
+      <div data-key="71" class="key"></div>
+      <kbd>G</kbd>
+      <span class="sound">BOOM</span>
+    </div>
+    <div class="container">
+      <div data-key="72" class="key"></div>
+      <kbd>H</kbd>
+      <span class="sound">RIDE</span>
+    </div>
+    <div class="container">
+      <div data-key="74" class="key"></div>
+      <kbd>J</kbd>
+      <span class="sound">SNARE</span>
+    </div>
+    <div class="container">
+      <div data-key="75" class="key"></div>
+      <kbd>K</kbd>
+      <span class="sound">TOM</span>
+    </div>
+    <div class="container">
+      <div data-key="76" class="key"></div>
+      <kbd>L</kbd>
+      <span class="sound">TINK</span>
+    </div> <!--Close Keys div-->
+  </div><!--Close Key div-->
+
+<audio data-key="65" src="sounds/clap.wav"></audio>
+<audio data-key="83" src="sounds/hiHat.wav"></audio>
+<audio data-key="68" src="sounds/kick.wav"></audio>
+<audio data-key="70" src="sounds/openHat.wav"></audio>
+<audio data-key="71" src="sounds/openHat.wav"></audio>
+<audio data-key="72" src="sounds/ride.wav"></audio>
+<audio data-key="74" src="sounds/snare.wav"></audio>
+<audio data-key="75" src="sounds/tom.wav"></audio>
+<audio data-key="76" src="sounds/tink.wav"></audio>
+
+
+<script>
+  document.addEventListener('keydown', function(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    console.log(audio);
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+
+  </script>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--Materialize minimized javascript  -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+  <!--Backstretch-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+  <script>
+    $.backstretch("http://blog.hdwallsource.com/wp-content/uploads/2014/11/cool-gradient-wallpaper-26040-26725-hd-wallpapers.jpg");
+  </script>
+</body>
+</html>
