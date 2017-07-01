@@ -10,61 +10,65 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="style.css"  media="screen,projection"/>
+
   <!--Page Title-->
   <title>Drum kit</title>
 
 </head>
 
-<body>
-  <div class="keys"> <!--Open Keys Div-->
-    <!--Open Key divs  -->
-    <div class="container key">
-      <div data-key="65" class="key"></div>
-      <kbd>A</kbd>
-      <span class="sound">CLAP</span>
-    </div>
-    <div class="container">
-      <div data-key="83" class="key"></div>
-      <kbd>S</kbd>
-      <span class="sound">HIHAT</span>
-    </div>
-    <div class="container">
-      <div data-key="68" class="key"></div>
-      <kbd>D</kbd>
-      <span class="sound">KICK</span>
-    </div>
-    <div class="container">
-      <div data-key="70" class="key"></div>
-      <kbd>F</kbd>
-      <span class="sound">OPENHAT</span>
-    </div>
-    <div class="container">
-      <div data-key="71" class="key"></div>
-      <kbd>G</kbd>
-      <span class="sound">BOOM</span>
-    </div>
-    <div class="container">
-      <div data-key="72" class="key"></div>
-      <kbd>H</kbd>
-      <span class="sound">RIDE</span>
-    </div>
-    <div class="container">
-      <div data-key="74" class="key"></div>
-      <kbd>J</kbd>
-      <span class="sound">SNARE</span>
-    </div>
-    <div class="container">
-      <div data-key="75" class="key"></div>
-      <kbd>K</kbd>
-      <span class="sound">TOM</span>
-    </div>
-    <div class="container">
-      <div data-key="76" class="key"></div>
-      <kbd>L</kbd>
-      <span class="sound">TINK</span>
-    </div> <!--Close Keys div-->
-  </div><!--Close Key div-->
 
+<body>
+  <nav class="transparent !important">
+  <div class="nav-wrapper transparent !important">
+    <a href="#" class="brand-logo center">Javascript Drums</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+
+  </div>
+</nav>
+  <main>
+    <div class="keys container">
+        <div data-key="65" class="key">
+          <kbd>A</kbd>
+          <span class="sound">clap</span>
+        </div>
+        <div data-key="83" class="key">
+          <kbd>S</kbd>
+          <span class="sound">hihat</span>
+        </div>
+        <div data-key="68" class="key">
+          <kbd>D</kbd>
+          <span class="sound">kick</span>
+        </div>
+        <div data-key="70" class="key">
+          <kbd>F</kbd>
+          <span class="sound">hat</span>
+        </div>
+        <div data-key="71" class="key">
+          <kbd>G</kbd>
+          <span class="sound">boom</span>
+        </div>
+        <div data-key="72" class="key">
+          <kbd>H</kbd>
+          <span class="sound">ride</span>
+        </div>
+        <div data-key="74" class="key">
+          <kbd>J</kbd>
+          <span class="sound">snare</span>
+        </div>
+        <div data-key="75" class="key">
+          <kbd>K</kbd>
+          <span class="sound">tom</span>
+        </div>
+        <div data-key="76" class="key">
+          <kbd>L</kbd>
+          <span class="sound">tink</span>
+        </div>
+      </div>
+    </main>
+
+
+<!--Audio files attached to data-key  -->
 <audio data-key="65" src="sounds/clap.wav"></audio>
 <audio data-key="83" src="sounds/hiHat.wav"></audio>
 <audio data-key="68" src="sounds/kick.wav"></audio>
@@ -77,10 +81,28 @@
 
 
 <script>
+  //add event listener on keydown and create callback to grab keyCode
   document.addEventListener('keydown', function(e) {
+    //use JS attribute selector to grab keyCode and use template string to grab keyCode dynamically
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
     console.log(audio);
+    console.log(key)
+    //if no audio stop function from running
+    if(!audio) return; // if there is no value we will not fire the function
+    audio.currentTime = 0; // resets .wav to zero everytime file is played
+    //play audio
+    audio.play();
+    key.classList.add('playing');
   });
+
+  function removeTransition(e) {
+    if(e.propertyName !== "transform") return; //skip if not a transform
+    e.target.classList.remove('playing');
+  }
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener("transitionend", removeTransition));
+
 </script>
 
 
